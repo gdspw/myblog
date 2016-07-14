@@ -15,16 +15,16 @@
   </properties>
   <dependencies>
   	<!-- 项目模块间的依赖 -->
-  	<dependency>
-  		<groupId>com.gds</groupId>
-  		<artifactId>myblog-model</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+  		<!-- 其他jar包 -->
+  	<dependency>
+  		<groupId>commons-collections</groupId>
+  		<artifactId>commons-collections</artifactId>
+  	</dependency>
   </dependencies>
 </project>
