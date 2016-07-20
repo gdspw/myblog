@@ -23,8 +23,9 @@
   	<mybatis2spring.version>1.3.0</mybatis2spring.version>
   	
   	<mysql.version>6.0.3</mysql.version>
+  	
+  	<hikaricp.version>2.4.7</hikaricp.version>
   </properties>
-  <dependencyManagement>
   	<dependencies>
   		<!-- junit jar包 -->
   		<dependency>
@@ -116,14 +117,21 @@
 		    <groupId>org.mybatis.generator</groupId>
 		    <artifactId>mybatis-generator</artifactId>
 		    <version>1.3.3</version>
+		    <type>pom</type>
 		</dependency>
 		<dependency>
     		<groupId>org.mybatis.generator</groupId>
     		<artifactId>mybatis-generator-maven-plugin</artifactId>
     		<version>1.3.3</version>
 		</dependency>
+		
+		<!-- 据说是性能最好的连接池 -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${hikaricp.version}</version>
+		</dependency>
   	</dependencies>
-  </dependencyManagement>
 	
 	<build>
 		<pluginManagement>

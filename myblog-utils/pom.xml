@@ -13,18 +13,4 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <dependencies>
-  	<!-- 项目模块间的依赖 -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-  		<!-- 其他jar包 -->
-  	<dependency>
-  		<groupId>commons-collections</groupId>
-  		<artifactId>commons-collections</artifactId>
-  	</dependency>
-  </dependencies>
 </project>

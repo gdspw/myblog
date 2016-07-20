@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
+					 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd ">
+
+	<context:property-placeholder location="classpath*:jdbc.properties"/>
+	
+	<!-- 数据库 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="shutdown">
+		<property name="driverClassName" value="${db.driverClass}" />
+		<property name="jdbcUrl" value="${db.jdbcUrl}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}"/>
+		
+		<!-- 连接制度数据库时配置为true,保证安全 -->
+		<property name="readOnly" value="${db.readOnly}"/>
+		<!-- 等待连接池分配连接的最大时常（毫秒），超过这个时常还没有可用的连接则发生SQLException,缺省：30秒 -->
+		<property name="connectionTimeout" value="${db.connectionTimeout}" />
+		<!-- 一个连接idle状态的最大时常（毫秒），超时则被释放（retired）,缺省：10分钟  -->
+		<property name="idleTimeout" value="${db.idleTimeout}" />
+		<property name="maxLifetime" value="${db.maxLifetime}" />
+		<!-- 连接池中允许的最大连接数，  -->
+		<property name="maximumPoolSize" value="${db.maximumPoolSize}"/>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描mapping.xml -->
+		<property name="mapperLocations" value="classpath:com/gds/model/mapping/*.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.gds.persist.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+</beans>
