@@ -9,7 +9,7 @@
   </parent>
   <artifactId>myblog-web</artifactId>
   <packaging>war</packaging>
-  <name>myblog-web Maven Webapp</name>
+  <name>myblog-web</name>
   <url>http://maven.apache.org</url>
   
   
@@ -80,7 +80,7 @@
   			</includes>
   			<excludes>
   				<exclude>*.sql</exclude>
-  				<exclude>log4j.xml</exclude>
+  				<exclude>logback.xml</exclude>
   				<exclude>jdbc.properties</exclude>
   				<exclude>spring/applicationContext-webmvc.xml</exclude>
   				<exclude>spring/applicationContext-dao.xml</exclude>
@@ -90,7 +90,7 @@
   		<resource>
   			<directory>src/main/resources</directory>
   			<includes>
-  				<include>log4j.xml</include>
+  				<include>logback.xml</include>
   				<include>jdbc.properties</include>
   				<include>spring/applicationContext-webmvc.xml</include>
   				<include>spring/applicationContext-dao.xml</include>
@@ -105,5 +105,34 @@
   		<filter>src/main/resources/config/config-${package.environment}.properties</filter>
   	</filters>
   	<finalName>myblog-web-${package.environment}</finalName>
+  
+  	<!-- <plugins>
+  		<plugin>
+  			<artifactId>maven-resources-plugin</artifactId>
+  			<version>2.7</version>
+  			<executions>
+  				<execution>
+  					<id>copy-resources</id>
+  					<phase>validate</phase>
+  					<goals>
+  						<goal>copy-resources</goal>
+  					</goals>
+  					<configuration>
+  						<outputDirectory>src/main/webapp/WEB-INF/</outputDirectory>
+  						<resources>
+  							<resource>
+  								<directory>src/main/resources</directory>
+  								<filtering>true</filtering>
+  							</resource>
+  						</resources>
+  						<filters>
+  							<filter>src/main/resources/config/config-${package.environment}.properties</filter>
+  						</filters>
+  					</configuration>
+  				</execution>
+  			</executions>
+  		</plugin>
+  	</plugins>
+  	 -->
   </build>
 </project>

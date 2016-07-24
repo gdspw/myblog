@@ -1,29 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="GBK"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
-						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
-					 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd ">
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+					 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
 
-	<context:property-placeholder location="classpath*:jdbc.properties"/>
-	
-	<!-- æ•°æ®åº“ -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- Êý¾Ý¿â -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="shutdown">
-		<property name="driverClassName" value="${db.driverClass}" />
 		<property name="jdbcUrl" value="${db.jdbcUrl}" />
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}"/>
 		
-		<!-- è¿žæŽ¥åˆ¶åº¦æ•°æ®åº“æ—¶é…ç½®ä¸ºtrue,ä¿è¯å®‰å…¨ -->
+		<!-- Á¬½ÓÖÆ¶ÈÊý¾Ý¿âÊ±ÅäÖÃÎªtrue,±£Ö¤°²È« -->
 		<property name="readOnly" value="${db.readOnly}"/>
-		<!-- ç­‰å¾…è¿žæŽ¥æ± åˆ†é…è¿žæŽ¥çš„æœ€å¤§æ—¶å¸¸ï¼ˆæ¯«ç§’ï¼‰ï¼Œè¶…è¿‡è¿™ä¸ªæ—¶å¸¸è¿˜æ²¡æœ‰å¯ç”¨çš„è¿žæŽ¥åˆ™å‘ç”ŸSQLException,ç¼ºçœï¼š30ç§’ -->
+		<!-- µÈ´ýÁ¬½Ó³Ø·ÖÅäÁ¬½ÓµÄ×î´óÊ±³££¨ºÁÃë£©£¬³¬¹ýÕâ¸öÊ±³£»¹Ã»ÓÐ¿ÉÓÃµÄÁ¬½ÓÔò·¢ÉúSQLException,È±Ê¡£º30Ãë -->
 		<property name="connectionTimeout" value="${db.connectionTimeout}" />
-		<!-- ä¸€ä¸ªè¿žæŽ¥idleçŠ¶æ€çš„æœ€å¤§æ—¶å¸¸ï¼ˆæ¯«ç§’ï¼‰ï¼Œè¶…æ—¶åˆ™è¢«é‡Šæ”¾ï¼ˆretiredï¼‰,ç¼ºçœï¼š10åˆ†é’Ÿ  -->
+		<!-- Ò»¸öÁ¬½Óidle×´Ì¬µÄ×î´óÊ±³££¨ºÁÃë£©£¬³¬Ê±Ôò±»ÊÍ·Å£¨retired£©,È±Ê¡£º10·ÖÖÓ  -->
 		<property name="idleTimeout" value="${db.idleTimeout}" />
 		<property name="maxLifetime" value="${db.maxLifetime}" />
-		<!-- è¿žæŽ¥æ± ä¸­å…è®¸çš„æœ€å¤§è¿žæŽ¥æ•°ï¼Œ  -->
+		<!-- Á¬½Ó³ØÖÐÔÊÐíµÄ×î´óÁ¬½ÓÊý£¬  -->
 		<property name="maximumPoolSize" value="${db.maximumPoolSize}"/>
 	</bean>
 	
@@ -33,12 +31,12 @@
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- è‡ªåŠ¨æ‰«æmapping.xml -->
-		<property name="mapperLocations" value="classpath:com/gds/model/mapping/*.xml" />
+		<!-- ×Ô¶¯É¨Ãèmapping.xml -->
+		<property name="mapperLocations" value="classpath:com/gds/myblog/persist/dao/*.xml" />
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.gds.persist.dao" />
+		<property name="basePackage" value="com.gds.myblog.persist.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 </beans>
