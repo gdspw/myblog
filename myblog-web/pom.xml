@@ -48,13 +48,8 @@
   		<artifactId>myblog-utils</artifactId>
   		<version>${project.version}</version>
   	</dependency>
-    <dependency>
-    	<groupId>javax.servlet</groupId>
-    	<artifactId>servlet-api</artifactId>
-    	<version>3.0-alpha-1</version>
-    </dependency>
     
-    <dependency>
+<!--     <dependency>
     	<groupId>org.apache.velocity</groupId>
     	<artifactId>velocity</artifactId>
     	<version>${velocity.version}</version>
@@ -63,7 +58,13 @@
     	<groupId>org.apache.velocity</groupId>
     	<artifactId>velocity-tools</artifactId>
     	<version>${velocity-tools.version}</version>
-    </dependency>
+    	<exclusions>
+    		<exclusion>
+    			<groupId>commons-logging</groupId>
+    			<artifactId>commons-logging</artifactId>
+    		</exclusion>
+    	</exclusions>
+    </dependency> -->
   </dependencies>
   <build>
   	<resources>
