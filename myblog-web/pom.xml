@@ -86,6 +86,7 @@
   				<exclude>spring/applicationContext-webmvc.xml</exclude>
   				<exclude>spring/applicationContext-dao.xml</exclude>
   				<exclude>spring/applicationContext.xml</exclude>
+  				<exclude>mongodb.properties</exclude>
   			</excludes>
   		</resource>
   		<resource>
@@ -96,6 +97,7 @@
   				<include>spring/applicationContext-webmvc.xml</include>
   				<include>spring/applicationContext-dao.xml</include>
   				<include>spring/applicationContext.xml</include>
+  				<include>mongodb.properties</include>
   			</includes>
   			<filtering>true</filtering>
   		</resource>
