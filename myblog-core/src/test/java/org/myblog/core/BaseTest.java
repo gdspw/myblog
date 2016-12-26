@@ -1,4 +1,4 @@
-package com.gds.myblog.test;
+package org.myblog.core;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 
  * <p>Title:BaseTest</p>
- * <p>Description:»ù´¡²âÊÔÀà</p>
- * @author Ð¡·²Ëû´óÒ¯
- * @date 2016Äê7ÔÂ23ÈÕ ÏÂÎç10:13:33
+ * <p>Description:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+ * @author Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¯
+ * @date 2016ï¿½ï¿½7ï¿½ï¿½23ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:13:33
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
