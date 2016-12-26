@@ -11,27 +11,6 @@
   <packaging>war</packaging>
   <name>myblog-web</name>
   <url>http://maven.apache.org</url>
-  
-  
-  <profiles>
-  	<profile>
-  		<id>dev</id>
-  		<activation>
-  			<activeByDefault>true</activeByDefault>
-  		</activation>
-  		<properties>
-  			<package.environment>dev</package.environment>
-  		</properties>
-  	</profile>
-  	
-  	<profile>
-  		<id>pro</id>
-  		<properties>
-  			<package.environment>pro</package.environment>
-  		</properties>
-  	</profile>
-  </profiles>
-  
   <properties>
   	<velocity.version>1.7</velocity.version>
   	<velocity-tools.version>2.0</velocity-tools.version>
@@ -66,76 +45,5 @@
     	</exclusions>
     </dependency> -->
   </dependencies>
-  <build>
-  	<resources>
-		<resource>
-			<directory>src/main/java</directory>
-			<includes>
-				<include>**/*.xml</include>
-			</includes>
-		</resource>
-  		<resource>
-  			<directory>src/main/resources</directory>
-  			<includes>
-  				<include>**/*.*</include>
-  			</includes>
-  			<excludes>
-  				<exclude>*.sql</exclude>
-  				<exclude>logback.xml</exclude>
-  				<exclude>jdbc.properties</exclude>
-  				<exclude>spring/applicationContext-webmvc.xml</exclude>
-  				<exclude>spring/applicationContext-dao.xml</exclude>
-  				<exclude>spring/applicationContext.xml</exclude>
-  				<exclude>mongodb.properties</exclude>
-  			</excludes>
-  		</resource>
-  		<resource>
-  			<directory>src/main/resources</directory>
-  			<includes>
-  				<include>logback.xml</include>
-  				<include>jdbc.properties</include>
-  				<include>spring/applicationContext-webmvc.xml</include>
-  				<include>spring/applicationContext-dao.xml</include>
-  				<include>spring/applicationContext.xml</include>
-  				<include>mongodb.properties</include>
-  			</includes>
-  			<filtering>true</filtering>
-  		</resource>
-  		
-  	</resources>
-  
-  	<filters>
-  		<filter>src/main/resources/config/config-${package.environment}.properties</filter>
-  	</filters>
-  	<finalName>myblog-web-${package.environment}</finalName>
-  
-  	<!-- <plugins>
-  		<plugin>
-  			<artifactId>maven-resources-plugin</artifactId>
-  			<version>2.7</version>
-  			<executions>
-  				<execution>
-  					<id>copy-resources</id>
-  					<phase>validate</phase>
-  					<goals>
-  						<goal>copy-resources</goal>
-  					</goals>
-  					<configuration>
-  						<outputDirectory>src/main/webapp/WEB-INF/</outputDirectory>
-  						<resources>
-  							<resource>
-  								<directory>src/main/resources</directory>
-  								<filtering>true</filtering>
-  							</resource>
-  						</resources>
-  						<filters>
-  							<filter>src/main/resources/config/config-${package.environment}.properties</filter>
-  						</filters>
-  					</configuration>
-  				</execution>
-  			</executions>
-  		</plugin>
-  	</plugins>
-  	 -->
-  </build>
+
 </project>

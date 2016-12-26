@@ -15,6 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/applicationContext.xml" })
+// @TransactionConfiguration(transactionManager = "transactionManager",
+// defaultRollback = true)
+// @Transactional
 public class BaseTest {
 	
 	@Test

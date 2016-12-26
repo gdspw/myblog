@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Customer {
 	
 	@Id
-	private String id;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	
@@ -20,11 +20,11 @@ public class Customer {
 		this.lastName = lastName;
 	}
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

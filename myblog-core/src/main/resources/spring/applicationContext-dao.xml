@@ -10,7 +10,7 @@
 					 	http://www.springframework.org/schema/schema/util http://www.springframework.org/schema/schema/util/spring-util-4.2.xsd
 						http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd ">
 
-	<context:property-placeholder location="classpath:jdbc.properties,classpath:mongodb.properties"/>
+	<context:property-placeholder location="classpath:jdbc.properties,classpath:mongodb.properties" />
 	
 	<!-- 数据库 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="shutdown">
@@ -46,27 +46,36 @@
 	
 	<!-- mongodb的配置 -->
 	<!-- 通过工厂bean创建mongo连接实例 -->
-	<mongo:db-factory id="mongoDbFactory"
-		host="${mongodb.host}"
-		port="${mongodb.port}"
-		dbname="${mongodb.database}"
-		username="${mongodb.username}"
-		password="${mongodb.password}"
-	/>
-	
-	<!-- MongoDB GridFS Template 支持，操作mongodb存放的文件 -->
-	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
-	</bean>
-	
-	<!-- mongo模板操作对象 -->
-	<mongo:mapping-converter id="converter" db-factory-ref="mongoDbFactory" />
-	<bean id="gridFsTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
-		<constructor-arg ref="mongoDbFactory" />
-		<constructor-arg ref="converter" />
-	</bean>
-	
-	    <!-- 扫描实现 -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"
+	 />
+	 
+	 <mongo:mongo host="${mongodb.host}" port="${mongodb.port}">
+	 	    <mongo:options connections-per-host="8"
+                   threads-allowed-to-block-for-connection-multiplier="4"
+                   connect-timeout="1000"
+                   max-wait-time="1500"
+                   auto-connect-retry="true"
+                   socket-keep-alive="true"
+                   socket-timeout="1500"
+                   slave-ok="true"
+                   write-number="1"
+                   write-timeout="0"
+                   write-fsync="true" />
+	 </mongo:mongo>
+	 
+	 <mongo:db-factory 
+	 			  id="mongoDbFactory"
+                  dbname="myblog"
+                  username="gds"
+                  password="123456"
+                  mongo-ref="mongo"
+                  />
+     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+    </bean>
+    <context:annotation-config /> 
+	<!-- 扫描实现 -->
     <!-- <context:component-scan base-package="com.qooco.mongo.impl" /> -->
 	
 </beans>
